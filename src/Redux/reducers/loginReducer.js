@@ -1,6 +1,4 @@
 import * as ActionTypes from '../actionCreator'
-import NavigatorService from '../../navigation_config/services';
-import LocalDataManager from '../../utils/LocalDataManager'
 
 const intialState = {
     phone_code: "",
@@ -101,78 +99,6 @@ const loginReducer = (state = intialState, actions) => {
                 phone_code: actions.payload.callingCode[0] ? actions.payload.callingCode[0] : "00"
             }
 
-        case ActionTypes.SAVE_SOCIAL_DATA : 
-            console.log("SAVE_SOCIAL_DATA>>>>>",actions.payload);
-            
-            return{
-                ...state,
-                user_social_data : actions.payload
-            }
-
-        case ActionTypes.DELETE_SOCIAL_DATA : 
-        return{
-            ...state,
-            user_social_data : {},
-            social_phone_number: "",
-            firstDigit: "",
-            secondDigit: "",
-            thirdDigit:"",
-            fourthDigit:""
-            // showLoader:false
-        }
-
-        case ActionTypes.VERIFY_OTP_WITH_PHONE_NUMBER : 
-        return{
-            ...state,
-            showLoader: true
-        }
-
-        case ActionTypes.OTP_SENT_SUCCESS:
-            return {
-                ...state,
-                showLoader: false
-            }
-
-        case ActionTypes.OTP_VERIFY:
-            return {
-                ...state,
-                showLoader: true
-            }
-
-        case ActionTypes.OTP_VERIFY_SUCCESS:
-            // console.log(actions);
-            
-            LocalDataManager.saveDataAsyncStorage("LOGIN_DATA", JSON.stringify( actions.userData ))
-            return {
-                ...state,
-                showLoader: false,
-                firstDigit: "",
-                secondDigit: "",
-                thirdDigit: "",
-                fourthDigit: "",
-                fifthDigit: "",
-                sixthDigit: "",
-                phone_number: "",
-                referral_code: "",
-            }
-
-        case ActionTypes.OTP_VERIFY_FAIL:
-            return {
-                ...state,
-                showLoader: false
-            }
-
-        case ActionTypes.RESEND_OTP:
-            return {
-                ...state,
-                showLoader: true
-            }
-
-        case ActionTypes.RESEND_OTP_SUCCESS:
-            return {
-                ...state,
-                showLoader: false
-            }
 
         default:
             return state
