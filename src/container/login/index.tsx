@@ -9,7 +9,7 @@ import * as color from '../../res/colors'
 import CountryPicker from '../../utils/countryPicker'
 import { SafeAreaView } from 'react-navigation'
 import { connect } from 'react-redux'
-import { login, inputHandler, changePhoneCodeHandler, saveSocialData, deleteSocialData } from '../../Redux/actionCreator'
+import { login, inputHandler, changePhoneCodeHandler } from '../../Redux/actionCreator'
 import { Loader } from '../../utils/Loader'
 
 /**
@@ -17,7 +17,7 @@ import { Loader } from '../../utils/Loader'
  */
 
 export interface Props {
-    changePhoneCodeHandler, phone_number, referral_code, inputHandler, login, phone_code, otpSent, showLoader, verifyOtpWithPhoneNumber, saveSocialData,social_phone_number, social_phone_code, deleteSocialData
+    changePhoneCodeHandler, phone_number, referral_code, inputHandler, login, phone_code, otpSent, showLoader, verifyOtpWithPhoneNumber, saveSocialData,social_phone_number
 }
 
 
@@ -54,7 +54,7 @@ class Login extends Component<Props>{
     }
 
     render() {
-        const { changePhoneCodeHandler, phone_number, referral_code, inputHandler, login, phone_code, showLoader, social_phone_number, social_phone_code } = this.props
+        const { changePhoneCodeHandler, phone_number, referral_code, inputHandler, login, phone_code, showLoader } = this.props
 
         return (
             <KeyboardAvoidingView
@@ -141,7 +141,7 @@ class Login extends Component<Props>{
 
                                 <TouchableOpacity
                                     style={style.submitBtn}
-                                    // onPress={() => this.props.navigation.navigate("Verification")}
+                                  
                                     onPress={() => this._login(phone_code, phone_number,referral_code)}
                                 >
                                     <Text style={style.submitTxt}>{localize.CONTINUE}</Text>
@@ -161,9 +161,6 @@ const mapStateToProps = (state: any) => {
 
         phone_number: state.loginReducer.phone_number,
         referral_code: state.loginReducer.referral_code,
-
-        social_phone_number: state.loginReducer.social_phone_number,
-        social_phone_code: state.loginReducer.social_phone_code,
         phone_code: state.loginReducer.phone_code,
         otpSent: state.loginReducer.otpSent,
         showLoader: state.loginReducer.showLoader

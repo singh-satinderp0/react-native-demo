@@ -1,11 +1,15 @@
 import React,{ Component } from 'react';
-import { FlatList, View, SafeAreaView, Image} from 'react-native';
+import { FlatList, View, SafeAreaView, Image,} from 'react-native';
 import { CommonHeader } from '../../custom/CustomComponent'
 import style from './style'
 import * as color from '../../res/colors'
 
 
-class Home extends Component{
+export interface Props{
+    navigation
+}
+
+class Home extends Component<Props>{
     state={
         historyList:[
             {id:1,rate:'$150', image : require('../../res/drawable/pic_1.jpeg')},
@@ -26,14 +30,21 @@ class Home extends Component{
             {id:16,rate:'$450', image : require('../../res/drawable/pic4.jpeg')},
         ]
     }
+
+    logout = () => {
+        this.props.navigation.navigate('Login')
+    }
+
     render(){
         return(
                 <SafeAreaView style={{ backgroundColor:color.WHITE_COLOR,flex:1 }}>
-                <CommonHeader
+                   <CommonHeader
+                   isLoggedOut={true}
                 // onClick = {() => this.props.navigation.navigate("")}
                 style={style.header}
                 title={"Home Gallery"}
-                />
+                logoutHandler={() => this.logout()}
+                />                
 
                  <FlatList
             style={{ width:'100%',backgroundColor: color.WHITE_COLOR }}

@@ -45,7 +45,7 @@ const { keyboardType,
 )
 
 export const CommonHeader = (props : any) => {
-    const { style,title,onClick } = props
+    const { style,title,onClick, isLoggedOut, logoutHandler } = props
     return(
     <View style={[styles.header,style]}>
     <TouchableOpacity onPress={onClick} style={styles.backBtn}>
@@ -53,6 +53,13 @@ export const CommonHeader = (props : any) => {
     </TouchableOpacity>
 
 <Text style={styles.title}>{title}</Text>
+
+{isLoggedOut ?
+    <TouchableOpacity onPress={logoutHandler} style={[styles.Btn]}>
+<Icons name={'power-off'} size={24} />
+                </TouchableOpacity>
+:null
+}
 </View>
 )}
 
@@ -91,6 +98,18 @@ const styles = ScaleSheet.create({
         // backgroundColor:'red',
         width:'20%'
     },
+
+    Btn:{
+        // backgroundColor:'#eee',
+        // paddingHorizontal : 30,
+        height:20,
+        borderRadius : 5,
+        justifyContent:'flex-end',
+        alignItems:'flex-end',
+        width:'20%',
+        
+    },
+
     title:{
         // backgroundColor:'green',
         width:'60%',

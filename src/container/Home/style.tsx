@@ -29,6 +29,14 @@ const style = scaleSheet.create({
         width: 300,
         height:300,
         resizeMode:"cover"
+    },
+    Btn:{
+        backgroundColor:'#eee',
+        paddingHorizontal : 30,
+        height:20,
+        borderRadius : 10,
+        marginTop:70,
+        width:'20%'
     }
 })
 
